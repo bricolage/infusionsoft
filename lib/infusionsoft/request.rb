@@ -52,7 +52,7 @@ module Infusionsoft
     rescue RestClient::ExceptionWithResponse => err
       api_logger.error "[ERROR]: #{err}"
     else
-      return JSON.parse(resp.body) if resp.body # Some calls respond w nothing
+      return resp.body.blank? ? "" : JSON.parse(resp.body) # Some calls respond w nothing
     end
   end
 end
